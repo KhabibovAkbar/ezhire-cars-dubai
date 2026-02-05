@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -35,9 +36,22 @@ interface HeaderProps {
 }
 
 export function Header({ title, subtitle, onMenuClick }: HeaderProps) {
+  const router = useRouter();
   const { theme, toggleTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
   const isDarkMode = theme === "dark";
+
+  const handleLogout = () => {
+    router.push("/");
+  };
+
+  const handleProfile = () => {
+    router.push("/settings");
+  };
+
+  const handleSettings = () => {
+    router.push("/settings");
+  };
 
   return (
     <header className="sticky top-0 z-30 h-16 bg-bg-primary/80 backdrop-blur-xl border-b border-border">
@@ -193,16 +207,16 @@ export function Header({ title, subtitle, onMenuClick }: HeaderProps) {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleProfile} className="cursor-pointer">
                 <User className="mr-2 h-4 w-4 rtl:mr-0 rtl:ml-2" />
                 {t("profile")}
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleSettings} className="cursor-pointer">
                 <Settings className="mr-2 h-4 w-4 rtl:mr-0 rtl:ml-2" />
                 {t("settings")}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-danger">
+              <DropdownMenuItem onClick={handleLogout} className="text-danger cursor-pointer">
                 <LogOut className="mr-2 h-4 w-4 rtl:mr-0 rtl:ml-2" />
                 {t("logout")}
               </DropdownMenuItem>

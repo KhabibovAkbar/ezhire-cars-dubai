@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard,
@@ -31,7 +31,12 @@ interface SidebarProps {
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const { t, isRTL } = useLanguage();
+
+  const handleLogout = () => {
+    router.push("/");
+  };
 
   const mainNavItems = [
     { titleKey: "dashboard" as TranslationKey, href: "/dashboard", icon: LayoutDashboard },
@@ -141,8 +146,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             </p>
             <p className="text-xs text-text-muted truncate">Administrator</p>
           </div>
-          <Button variant="ghost" size="icon" className="shrink-0">
-            <LogOut className="h-4 w-4 text-text-muted" />
+          <Button variant="ghost" size="icon" className="shrink-0" onClick={handleLogout}>
+            <LogOut className="h-4 w-4 text-text-muted hover:text-danger" />
           </Button>
         </div>
       </div>
