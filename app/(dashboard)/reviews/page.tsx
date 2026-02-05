@@ -25,9 +25,9 @@ export default function ReviewsPage() {
   const [flagDialogOpen, setFlagDialogOpen] = useState(false);
   const [selectedReview, setSelectedReview] = useState<typeof reviews[0] | null>(null);
   const [replyText, setReplyText] = useState("");
-  const [helpfulReviews, setHelpfulReviews] = useState<Set<string>>(new Set());
-  const [flaggedReviews, setFlaggedReviews] = useState<Set<string>>(new Set());
-  const [repliedReviews, setRepliedReviews] = useState<Map<string, string>>(new Map());
+  const [helpfulReviews, setHelpfulReviews] = useState<Set<number>>(new Set());
+  const [flaggedReviews, setFlaggedReviews] = useState<Set<number>>(new Set());
+  const [repliedReviews, setRepliedReviews] = useState<Map<number, string>>(new Map());
   const [showToast, setShowToast] = useState<{ message: string; type: "success" | "warning" } | null>(null);
 
   const handleReply = (review: typeof reviews[0]) => {
@@ -45,7 +45,7 @@ export default function ReviewsPage() {
     }
   };
 
-  const handleHelpful = (reviewId: string) => {
+  const handleHelpful = (reviewId: number) => {
     const newHelpful = new Set(helpfulReviews);
     if (newHelpful.has(reviewId)) {
       newHelpful.delete(reviewId);
