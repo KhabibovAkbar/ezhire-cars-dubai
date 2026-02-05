@@ -175,7 +175,10 @@ export function Header({ title, subtitle, onMenuClick }: HeaderProps) {
                 </span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="justify-center text-accent">
+              <DropdownMenuItem 
+                className="justify-center text-accent cursor-pointer"
+                onClick={() => router.push("/notifications")}
+              >
                 {t("viewAll")}
               </DropdownMenuItem>
             </DropdownMenuContent>
