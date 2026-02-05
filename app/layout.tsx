@@ -17,6 +17,24 @@ export const metadata: Metadata = {
   },
 };
 
+const accentColorScript = `
+  (function() {
+    const colors = {
+      "#FF4500": "#FF6130",
+      "#3B82F6": "#2563EB",
+      "#22C55E": "#16A34A",
+      "#F59E0B": "#D97706",
+      "#EF4444": "#DC2626",
+      "#EC4899": "#DB2777"
+    };
+    const saved = localStorage.getItem("accentColor");
+    if (saved && colors[saved]) {
+      document.documentElement.style.setProperty("--color-accent", saved);
+      document.documentElement.style.setProperty("--color-accent-hover", colors[saved]);
+    }
+  })();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,6 +42,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: accentColorScript }} />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <ThemeProvider>
           <LanguageProvider>{children}</LanguageProvider>

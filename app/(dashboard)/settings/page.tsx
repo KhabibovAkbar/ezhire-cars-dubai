@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   User,
@@ -13,6 +13,7 @@ import {
   Phone,
   MapPin,
   Globe,
+  Check,
 } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Sidebar } from "@/components/layout/Sidebar";
@@ -23,9 +24,21 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
+import { useTheme } from "@/components/ThemeProvider";
+
+const accentColors = [
+  { name: "Orange", value: "#FF4500", hover: "#FF6130" },
+  { name: "Blue", value: "#3B82F6", hover: "#2563EB" },
+  { name: "Green", value: "#22C55E", hover: "#16A34A" },
+  { name: "Yellow", value: "#F59E0B", hover: "#D97706" },
+  { name: "Red", value: "#EF4444", hover: "#DC2626" },
+  { name: "Pink", value: "#EC4899", hover: "#DB2777" },
+];
 
 export default function SettingsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [selectedColor, setSelectedColor] = useState("#FF4500");
   const [notifications, setNotifications] = useState({
     email: true,
     push: true,
@@ -34,6 +47,29 @@ export default function SettingsPage() {
     bookingUpdates: true,
     reviewAlerts: true,
   });
+
+  // Load saved accent color on mount
+  useEffect(() => {
+    const savedColor = localStorage.getItem("accentColor");
+    if (savedColor) {
+      setSelectedColor(savedColor);
+      applyAccentColor(savedColor);
+    }
+  }, []);
+
+  const applyAccentColor = (color: string) => {
+    const colorData = accentColors.find(c => c.value === color);
+    if (colorData) {
+      document.documentElement.style.setProperty("--color-accent", colorData.value);
+      document.documentElement.style.setProperty("--color-accent-hover", colorData.hover);
+      localStorage.setItem("accentColor", color);
+    }
+  };
+
+  const handleColorChange = (color: string) => {
+    setSelectedColor(color);
+    applyAccentColor(color);
+  };
 
   return (
     <div className="flex min-h-screen bg-bg-primary">
@@ -329,35 +365,36 @@ export default function SettingsPage() {
                         </p>
                         <div className="grid grid-cols-3 gap-4">
                           {[
-                            { name: "Dark", active: true },
-                            { name: "Light", active: false },
-                            { name: "System", active: false },
-                          ].map((theme) => (
+                            { name: "Dark", value: "dark" as const },
+                            { name: "Light", value: "light" as const },
+                            { name: "System", value: "system" as const },
+                          ].map((themeOption) => (
                             <button
-                              key={theme.name}
+                              key={themeOption.name}
+                              onClick={() => setTheme(themeOption.value)}
                               className={`p-4 rounded-lg border-2 transition-all ${
-                                theme.active
+                                theme === themeOption.value
                                   ? "border-accent bg-accent/10"
                                   : "border-border hover:border-border-hover"
                               }`}
                             >
                               <div
                                 className={`h-20 rounded-md mb-3 ${
-                                  theme.name === "Dark"
-                                    ? "bg-bg-primary"
-                                    : theme.name === "Light"
+                                  themeOption.name === "Dark"
+                                    ? "bg-[#121214]"
+                                    : themeOption.name === "Light"
                                     ? "bg-white"
-                                    : "bg-gradient-to-r from-bg-primary to-white"
+                                    : "bg-gradient-to-r from-[#121214] to-white"
                                 }`}
                               />
                               <p
                                 className={`text-sm font-medium ${
-                                  theme.active
+                                  theme === themeOption.value
                                     ? "text-accent"
                                     : "text-text-secondary"
                                 }`}
                               >
-                                {theme.name}
+                                {themeOption.name}
                               </p>
                             </button>
                           ))}
@@ -371,21 +408,21 @@ export default function SettingsPage() {
                           Accent Color
                         </p>
                         <div className="flex gap-3">
-                          {[
-                            "#FF4500",
-                            "#3B82F6",
-                            "#22C55E",
-                            "#F59E0B",
-                            "#EF4444",
-                            "#EC4899",
-                          ].map((color, index) => (
+                          {accentColors.map((color) => (
                             <button
-                              key={color}
-                              className={`w-10 h-10 rounded-full transition-transform hover:scale-110 ${
-                                index === 0 ? "ring-2 ring-offset-2 ring-offset-bg-secondary ring-white" : ""
+                              key={color.value}
+                              onClick={() => handleColorChange(color.value)}
+                              className={`w-10 h-10 rounded-full transition-transform hover:scale-110 flex items-center justify-center ${
+                                selectedColor === color.value 
+                                  ? "ring-2 ring-offset-2 ring-offset-bg-secondary ring-white" 
+                                  : ""
                               }`}
-                              style={{ backgroundColor: color }}
-                            />
+                              style={{ backgroundColor: color.value }}
+                            >
+                              {selectedColor === color.value && (
+                                <Check className="w-5 h-5 text-white" />
+                              )}
+                            </button>
                           ))}
                         </div>
                       </div>
