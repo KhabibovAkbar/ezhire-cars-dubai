@@ -29,15 +29,15 @@ export default function DashboardPage() {
           onMenuClick={() => setSidebarOpen(true)}
         />
 
-        <main className="flex-1 p-3 lg:p-4 overflow-auto">
+        <main className="flex-1 p-4 lg:p-6 overflow-auto">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="max-w-6xl mx-auto space-y-4"
+            className="max-w-7xl mx-auto space-y-6"
           >
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
               <StatCard
                 title={t("totalRevenue")}
                 value={formatCurrency(dashboardStats.totalRevenue)}
@@ -77,17 +77,17 @@ export default function DashboardPage() {
             </div>
 
             {/* Charts Row */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-4">
-              <div className="lg:col-span-2 h-[320px]">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
+              <div className="lg:col-span-2 h-[350px]">
                 <RevenueChart />
               </div>
-              <div className="h-[320px]">
+              <div className="h-[350px]">
                 <FleetStatusChart />
               </div>
             </div>
 
             {/* Bottom Row */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
               <div className="lg:col-span-2">
                 <RecentBookings />
               </div>

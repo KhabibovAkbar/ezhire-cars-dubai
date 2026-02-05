@@ -78,14 +78,14 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const SidebarContent = () => (
     <>
       {/* Logo */}
-      <div className="flex items-center justify-between h-14 px-4 border-b border-border shrink-0">
+      <div className="flex items-center justify-between h-16 px-6 border-b border-border shrink-0">
         <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-accent">
-            <Car className="w-4 h-4 text-white" />
+          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent">
+            <Car className="w-5 h-5 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="text-base font-bold text-text-primary leading-tight">Ezhire Cars</span>
-            <span className="text-[9px] text-accent font-medium -mt-0.5">DUBAI</span>
+            <span className="text-lg font-bold text-text-primary leading-tight">Ezhire Cars</span>
+            <span className="text-[10px] text-accent font-medium -mt-0.5">DUBAI</span>
           </div>
         </Link>
         <Button
@@ -152,12 +152,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
     <>
       {/* Desktop Sidebar - Always visible */}
-      <aside className="hidden lg:flex fixed top-0 left-0 rtl:left-auto rtl:right-0 z-40 h-screen w-[220px] bg-bg-secondary border-r rtl:border-r-0 rtl:border-l border-border flex-col">
+      <aside className="hidden lg:flex fixed top-0 left-0 rtl:left-auto rtl:right-0 z-40 h-screen w-[260px] bg-bg-secondary border-r rtl:border-r-0 rtl:border-l border-border flex-col">
         <SidebarContent />
       </aside>
 
       {/* Desktop spacer */}
-      <div className="hidden lg:block w-[220px] shrink-0" />
+      <div className="hidden lg:block w-[260px] shrink-0" />
 
       {/* Mobile Sidebar */}
       <AnimatePresence>
@@ -174,12 +174,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
             {/* Mobile sidebar panel */}
             <motion.aside
-              initial={{ x: isRTL ? 240 : -240 }}
+              initial={{ x: isRTL ? 280 : -280 }}
               animate={{ x: 0 }}
-              exit={{ x: isRTL ? 240 : -240 }}
+              exit={{ x: isRTL ? 280 : -280 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className={cn(
-                "fixed top-0 z-50 h-screen w-[220px] bg-bg-secondary border-border flex flex-col lg:hidden",
+                "fixed top-0 z-50 h-screen w-[260px] bg-bg-secondary border-border flex flex-col lg:hidden",
                 isRTL ? "right-0 border-l" : "left-0 border-r"
               )}
             >
