@@ -152,12 +152,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
     <>
       {/* Desktop Sidebar - Always visible */}
-      <aside className="hidden lg:flex fixed top-0 left-0 rtl:left-auto rtl:right-0 z-40 h-screen w-[260px] bg-bg-secondary border-r rtl:border-r-0 rtl:border-l border-border flex-col">
+      <aside className="hidden lg:flex fixed top-0 left-0 rtl:left-auto rtl:right-0 z-40 h-screen w-[220px] bg-bg-secondary border-r rtl:border-r-0 rtl:border-l border-border flex-col">
         <SidebarContent />
       </aside>
 
       {/* Desktop spacer */}
-      <div className="hidden lg:block w-[260px] shrink-0" />
+      <div className="hidden lg:block w-[220px] shrink-0" />
 
       {/* Mobile Sidebar */}
       <AnimatePresence>
@@ -174,12 +174,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
             {/* Mobile sidebar panel */}
             <motion.aside
-              initial={{ x: isRTL ? 280 : -280 }}
+              initial={{ x: isRTL ? 240 : -240 }}
               animate={{ x: 0 }}
-              exit={{ x: isRTL ? 280 : -280 }}
+              exit={{ x: isRTL ? 240 : -240 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className={cn(
-                "fixed top-0 z-50 h-screen w-[260px] bg-bg-secondary border-border flex flex-col lg:hidden",
+                "fixed top-0 z-50 h-screen w-[220px] bg-bg-secondary border-border flex flex-col lg:hidden",
                 isRTL ? "right-0 border-l" : "left-0 border-r"
               )}
             >

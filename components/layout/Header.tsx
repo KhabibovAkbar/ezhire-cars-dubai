@@ -40,8 +40,8 @@ export function Header({ title, subtitle, onMenuClick }: HeaderProps) {
   const isDarkMode = theme === "dark";
 
   return (
-    <header className="sticky top-0 z-30 h-16 bg-bg-primary/80 backdrop-blur-xl border-b border-border">
-      <div className="flex items-center justify-between h-full px-4 lg:px-6">
+    <header className="sticky top-0 z-30 h-14 bg-bg-primary/80 backdrop-blur-xl border-b border-border">
+      <div className="flex items-center justify-between h-full px-3 lg:px-4">
         {/* Left side */}
         <div className="flex items-center gap-4">
           <MobileMenuButton onClick={onMenuClick} />
