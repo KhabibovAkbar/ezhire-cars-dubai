@@ -134,7 +134,7 @@ export default function VehiclesPage() {
       category: newVehicleForm.category,
       year: parseInt(newVehicleForm.year),
       seats: parseInt(newVehicleForm.seats),
-      transmission: newVehicleForm.transmission,
+      transmission: newVehicleForm.transmission as "Automatic" | "Manual",
       price: parseInt(newVehicleForm.price) || 99,
       image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800",
       status: "available",
@@ -196,7 +196,7 @@ export default function VehiclesPage() {
                 status: editForm.status as Vehicle["status"],
                 price: parseInt(editForm.price) || v.price,
                 seats: parseInt(editForm.seats) || v.seats,
-                transmission: editForm.transmission,
+                transmission: editForm.transmission as "Automatic" | "Manual",
                 year: parseInt(editForm.year) || v.year,
               }
             : v
