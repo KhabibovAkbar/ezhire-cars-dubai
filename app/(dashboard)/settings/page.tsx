@@ -89,10 +89,9 @@ export default function SettingsPage() {
                       {/* Avatar */}
                       <div className="flex items-center gap-6">
                         <div className="relative">
-                          <Avatar className="h-24 w-24">
-                            <AvatarImage src="https://randomuser.me/api/portraits/men/32.jpg" />
-                            <AvatarFallback>JS</AvatarFallback>
-                          </Avatar>
+                          <div className="h-24 w-24 rounded-full bg-accent flex items-center justify-center text-white font-bold text-2xl">
+                            KA
+                          </div>
                           <Button
                             size="icon"
                             variant="secondary"
@@ -103,7 +102,7 @@ export default function SettingsPage() {
                         </div>
                         <div>
                           <h3 className="font-semibold text-text-primary">
-                            John Smith
+                            Khalid Al Ameri
                           </h3>
                           <p className="text-sm text-text-muted">Administrator</p>
                         </div>
@@ -117,13 +116,13 @@ export default function SettingsPage() {
                           <label className="text-sm font-medium text-text-secondary">
                             First Name
                           </label>
-                          <Input defaultValue="John" />
+                          <Input defaultValue="Khalid" />
                         </div>
                         <div className="space-y-2">
                           <label className="text-sm font-medium text-text-secondary">
                             Last Name
                           </label>
-                          <Input defaultValue="Smith" />
+                          <Input defaultValue="Al Ameri" />
                         </div>
                         <div className="space-y-2">
                           <label className="text-sm font-medium text-text-secondary">
@@ -133,7 +132,7 @@ export default function SettingsPage() {
                             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" />
                             <Input
                               className="pl-9"
-                              defaultValue="admin@drivehub.com"
+                              defaultValue="admin@ezhirecars.ae"
                             />
                           </div>
                         </div>
@@ -145,7 +144,7 @@ export default function SettingsPage() {
                             <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" />
                             <Input
                               className="pl-9"
-                              defaultValue="+1 (555) 123-4567"
+                              defaultValue="+971 50 123 4567"
                             />
                           </div>
                         </div>
