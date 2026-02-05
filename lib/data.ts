@@ -527,7 +527,7 @@ export const revenueData: RevenueData[] = [
 
 export const fleetStatus: FleetStatus[] = [
   { name: "Available", value: 24, color: "#22C55E" },
-  { name: "Rented", value: 4, color: "#613C98" },
+  { name: "Rented", value: 4, color: "#FF4500" },
   { name: "Maintenance", value: 2, color: "#F59E0B" },
 ];
 

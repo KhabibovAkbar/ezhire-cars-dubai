@@ -108,7 +108,7 @@ Profile, company info, notification preferences, and appearance settings.
 Edit the color palette in `app/globals.css`:
 
 ```css
---color-accent: #613C98;      /* Primary accent */
+--color-accent: #FF4500;      /* Primary accent */
 --color-success: #22C55E;     /* Success states */
 --color-warning: #F59E0B;     /* Warning states */
 --color-danger: #EF4444;      /* Error states */
