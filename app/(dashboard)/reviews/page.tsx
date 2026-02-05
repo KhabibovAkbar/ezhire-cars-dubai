@@ -1,18 +1,80 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Star, MessageSquare, ThumbsUp, Flag } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Star, MessageSquare, ThumbsUp, Flag, X, Send, Check, AlertTriangle } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
 import { reviews } from "@/lib/data";
 import { getInitials } from "@/lib/utils";
 
 export default function ReviewsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [replyDialogOpen, setReplyDialogOpen] = useState(false);
+  const [flagDialogOpen, setFlagDialogOpen] = useState(false);
+  const [selectedReview, setSelectedReview] = useState<typeof reviews[0] | null>(null);
+  const [replyText, setReplyText] = useState("");
+  const [helpfulReviews, setHelpfulReviews] = useState<Set<string>>(new Set());
+  const [flaggedReviews, setFlaggedReviews] = useState<Set<string>>(new Set());
+  const [repliedReviews, setRepliedReviews] = useState<Map<string, string>>(new Map());
+  const [showToast, setShowToast] = useState<{ message: string; type: "success" | "warning" } | null>(null);
+
+  const handleReply = (review: typeof reviews[0]) => {
+    setSelectedReview(review);
+    setReplyText(repliedReviews.get(review.id) || "");
+    setReplyDialogOpen(true);
+  };
+
+  const handleSubmitReply = () => {
+    if (selectedReview && replyText.trim()) {
+      setRepliedReviews(new Map(repliedReviews.set(selectedReview.id, replyText)));
+      setReplyDialogOpen(false);
+      setReplyText("");
+      showToastMessage("Reply sent successfully!", "success");
+    }
+  };
+
+  const handleHelpful = (reviewId: string) => {
+    const newHelpful = new Set(helpfulReviews);
+    if (newHelpful.has(reviewId)) {
+      newHelpful.delete(reviewId);
+    } else {
+      newHelpful.add(reviewId);
+      showToastMessage("Marked as helpful", "success");
+    }
+    setHelpfulReviews(newHelpful);
+  };
+
+  const handleFlag = (review: typeof reviews[0]) => {
+    setSelectedReview(review);
+    setFlagDialogOpen(true);
+  };
+
+  const handleConfirmFlag = () => {
+    if (selectedReview) {
+      const newFlagged = new Set(flaggedReviews);
+      newFlagged.add(selectedReview.id);
+      setFlaggedReviews(newFlagged);
+      setFlagDialogOpen(false);
+      showToastMessage("Review flagged for moderation", "warning");
+    }
+  };
+
+  const showToastMessage = (message: string, type: "success" | "warning") => {
+    setShowToast({ message, type });
+    setTimeout(() => setShowToast(null), 3000);
+  };
 
   const averageRating = (
     reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
@@ -50,7 +112,7 @@ export default function ReviewsPage() {
                 Customer Reviews
               </h2>
               <p className="text-text-secondary">
-                See what customers say about DriveHub
+                See what customers say about Ezhire Cars
               </p>
             </div>
 
@@ -186,31 +248,57 @@ export default function ReviewsPage() {
                         &ldquo;{review.comment}&rdquo;
                       </p>
 
+                      {/* Reply shown */}
+                      {repliedReviews.has(review.id) && (
+                        <div className="mb-4 p-3 bg-accent/10 rounded-lg border border-accent/20">
+                          <p className="text-sm text-text-secondary">
+                            <span className="font-medium text-accent">Your reply:</span>{" "}
+                            {repliedReviews.get(review.id)}
+                          </p>
+                        </div>
+                      )}
+
                       {/* Actions */}
                       <div className="flex items-center gap-4">
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="gap-2 text-text-muted hover:text-text-primary"
+                          onClick={() => handleReply(review)}
+                          className={`gap-2 ${
+                            repliedReviews.has(review.id)
+                              ? "text-accent"
+                              : "text-text-muted hover:text-text-primary"
+                          }`}
                         >
                           <MessageSquare className="h-4 w-4" />
-                          Reply
+                          {repliedReviews.has(review.id) ? "Edit Reply" : "Reply"}
                         </Button>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="gap-2 text-text-muted hover:text-text-primary"
+                          onClick={() => handleHelpful(review.id)}
+                          className={`gap-2 ${
+                            helpfulReviews.has(review.id)
+                              ? "text-success"
+                              : "text-text-muted hover:text-text-primary"
+                          }`}
                         >
-                          <ThumbsUp className="h-4 w-4" />
-                          Helpful
+                          <ThumbsUp className={`h-4 w-4 ${helpfulReviews.has(review.id) ? "fill-success" : ""}`} />
+                          {helpfulReviews.has(review.id) ? "Helpful!" : "Helpful"}
                         </Button>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="gap-2 text-text-muted hover:text-danger"
+                          onClick={() => handleFlag(review)}
+                          disabled={flaggedReviews.has(review.id)}
+                          className={`gap-2 ${
+                            flaggedReviews.has(review.id)
+                              ? "text-danger"
+                              : "text-text-muted hover:text-danger"
+                          }`}
                         >
-                          <Flag className="h-4 w-4" />
-                          Flag
+                          <Flag className={`h-4 w-4 ${flaggedReviews.has(review.id) ? "fill-danger" : ""}`} />
+                          {flaggedReviews.has(review.id) ? "Flagged" : "Flag"}
                         </Button>
                       </div>
                     </CardContent>
@@ -221,6 +309,100 @@ export default function ReviewsPage() {
           </motion.div>
         </main>
       </div>
+
+      {/* Reply Dialog */}
+      <Dialog open={replyDialogOpen} onOpenChange={setReplyDialogOpen}>
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle>Reply to Review</DialogTitle>
+          </DialogHeader>
+          {selectedReview && (
+            <div className="space-y-4">
+              <div className="p-3 bg-bg-tertiary rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="font-medium text-text-primary">{selectedReview.customer}</span>
+                  <div className="flex items-center">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        className={`h-3 w-3 ${
+                          star <= selectedReview.rating
+                            ? "fill-warning text-warning"
+                            : "text-border"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-sm text-text-secondary">&ldquo;{selectedReview.comment}&rdquo;</p>
+              </div>
+              <Textarea
+                placeholder="Write your reply..."
+                value={replyText}
+                onChange={(e) => setReplyText(e.target.value)}
+                rows={4}
+                className="resize-none"
+              />
+            </div>
+          )}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setReplyDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmitReply} disabled={!replyText.trim()} className="gap-2">
+              <Send className="h-4 w-4" />
+              Send Reply
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Flag Dialog */}
+      <Dialog open={flagDialogOpen} onOpenChange={setFlagDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-danger">
+              <AlertTriangle className="h-5 w-5" />
+              Flag Review
+            </DialogTitle>
+          </DialogHeader>
+          <p className="text-text-secondary">
+            Are you sure you want to flag this review for moderation? This action will notify the moderation team.
+          </p>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setFlagDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={handleConfirmFlag} className="gap-2">
+              <Flag className="h-4 w-4" />
+              Flag Review
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className={`fixed bottom-4 right-4 z-50 px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 ${
+              showToast.type === "success"
+                ? "bg-success text-white"
+                : "bg-warning text-white"
+            }`}
+          >
+            {showToast.type === "success" ? (
+              <Check className="h-5 w-5" />
+            ) : (
+              <AlertTriangle className="h-5 w-5" />
+            )}
+            {showToast.message}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
