@@ -26,6 +26,7 @@ import {
 import { MobileMenuButton } from "./Sidebar";
 import { useTheme } from "@/components/ThemeProvider";
 import { useLanguage } from "@/components/LanguageProvider";
+import { languageNames, Language } from "@/lib/translations";
 
 interface HeaderProps {
   title: string;
@@ -88,23 +89,19 @@ export function Header({ title, subtitle, onMenuClick }: HeaderProps) {
                 <Globe className="h-5 w-5" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-40">
-              <DropdownMenuLabel>Language</DropdownMenuLabel>
+            <DropdownMenuContent align="end" className="w-44 max-h-80 overflow-y-auto">
+              <DropdownMenuLabel>{t("language")}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem 
-                onClick={() => setLanguage("en")}
-                className={language === "en" ? "bg-accent/10 text-accent" : ""}
-              >
-                <span className="mr-2">🇬🇧</span>
-                English
-              </DropdownMenuItem>
-              <DropdownMenuItem 
-                onClick={() => setLanguage("ar")}
-                className={language === "ar" ? "bg-accent/10 text-accent" : ""}
-              >
-                <span className="mr-2">🇦🇪</span>
-                العربية
-              </DropdownMenuItem>
+              {(Object.keys(languageNames) as Language[]).map((lang) => (
+                <DropdownMenuItem
+                  key={lang}
+                  onClick={() => setLanguage(lang)}
+                  className={language === lang ? "bg-accent/10 text-accent" : ""}
+                >
+                  <span className="mr-2">{languageNames[lang].flag}</span>
+                  {languageNames[lang].name}
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
 

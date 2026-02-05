@@ -1,4 +1,15 @@
-export type Language = "en" | "ar";
+export type Language = "en" | "ar" | "fr" | "de" | "es" | "pt" | "ru" | "tr";
+
+export const languageNames: Record<Language, { name: string; flag: string }> = {
+  en: { name: "English", flag: "🇬🇧" },
+  ar: { name: "العربية", flag: "🇦🇪" },
+  fr: { name: "Français", flag: "🇫🇷" },
+  de: { name: "Deutsch", flag: "🇩🇪" },
+  es: { name: "Español", flag: "🇪🇸" },
+  pt: { name: "Português", flag: "🇵🇹" },
+  ru: { name: "Русский", flag: "🇷🇺" },
+  tr: { name: "Türkçe", flag: "🇹🇷" },
+};
 
 export const translations = {
   en: {
@@ -82,14 +93,7 @@ export const translations = {
     // Header
     notifications: "Notifications",
     profile: "Profile",
-    
-    // Locations
-    dubaiMall: "Dubai Mall",
-    dubaiMarina: "Dubai Marina",
-    palmJumeirah: "Palm Jumeirah",
-    downtownDubai: "Downtown Dubai",
-    dubaiAirport: "Dubai Airport (DXB)",
-    abuDhabi: "Abu Dhabi",
+    language: "Language",
     
     // Branding
     companyName: "Ezhire Cars Dubai",
@@ -176,18 +180,533 @@ export const translations = {
     // Header
     notifications: "الإشعارات",
     profile: "الملف الشخصي",
-    
-    // Locations
-    dubaiMall: "دبي مول",
-    dubaiMarina: "دبي مارينا",
-    palmJumeirah: "نخلة جميرا",
-    downtownDubai: "وسط دبي",
-    dubaiAirport: "مطار دبي الدولي",
-    abuDhabi: "أبوظبي",
+    language: "اللغة",
     
     // Branding
     companyName: "إيزهاير كارز دبي",
     tagline: "تأجير سيارات فاخرة",
+  },
+  fr: {
+    // Navigation
+    dashboard: "Tableau de bord",
+    vehicles: "Véhicules",
+    bookings: "Réservations",
+    customers: "Clients",
+    revenue: "Revenus",
+    analytics: "Analytiques",
+    reviews: "Avis",
+    settings: "Paramètres",
+    help: "Aide & Support",
+    logout: "Déconnexion",
+    
+    // Dashboard
+    welcomeBack: "Bon retour",
+    totalRevenue: "Revenu Total",
+    totalBookings: "Total Réservations",
+    fleetStatus: "État de la Flotte",
+    totalCustomers: "Total Clients",
+    vsLastMonth: "vs mois dernier",
+    available: "Disponible",
+    rented: "Loué",
+    maintenance: "Maintenance",
+    revenueOverview: "Aperçu des Revenus",
+    recentBookings: "Réservations Récentes",
+    topVehicles: "Meilleurs Véhicules",
+    viewAll: "Voir Tout",
+    
+    // Vehicles
+    allVehicles: "Tous les Véhicules",
+    vehiclesInFleet: "véhicules dans votre flotte",
+    addNewVehicle: "Ajouter un Véhicule",
+    allTypes: "Tous Types",
+    allStatus: "Tous Statuts",
+    searchVehicles: "Rechercher véhicules...",
+    view: "Voir",
+    edit: "Modifier",
+    perDay: "/jour",
+    seats: "places",
+    
+    // Bookings
+    allBookings: "Toutes les Réservations",
+    bookingsFound: "réservations trouvées",
+    newBooking: "Nouvelle Réservation",
+    searchBookings: "Rechercher réservations...",
+    bookingId: "N° Réservation",
+    customer: "Client",
+    vehicle: "Véhicule",
+    dates: "Dates",
+    total: "Total",
+    status: "Statut",
+    actions: "Actions",
+    active: "Actif",
+    pending: "En attente",
+    upcoming: "À venir",
+    completed: "Terminé",
+    cancelled: "Annulé",
+    
+    // Customers
+    allCustomers: "Tous les Clients",
+    customersFound: "clients trouvés",
+    addCustomer: "Ajouter Client",
+    searchCustomers: "Rechercher clients...",
+    vipCustomers: "Clients VIP",
+    totalSpent: "Total Dépensé",
+    memberSince: "Membre Depuis",
+    viewProfile: "Voir Profil",
+    
+    // Common
+    search: "Rechercher",
+    save: "Enregistrer",
+    cancel: "Annuler",
+    delete: "Supprimer",
+    close: "Fermer",
+    create: "Créer",
+    update: "Mettre à jour",
+    all: "Tout",
+    
+    // Header
+    notifications: "Notifications",
+    profile: "Profil",
+    language: "Langue",
+    
+    // Branding
+    companyName: "Ezhire Cars Dubaï",
+    tagline: "Location de Voitures Premium",
+  },
+  de: {
+    // Navigation
+    dashboard: "Dashboard",
+    vehicles: "Fahrzeuge",
+    bookings: "Buchungen",
+    customers: "Kunden",
+    revenue: "Umsatz",
+    analytics: "Analysen",
+    reviews: "Bewertungen",
+    settings: "Einstellungen",
+    help: "Hilfe & Support",
+    logout: "Abmelden",
+    
+    // Dashboard
+    welcomeBack: "Willkommen zurück",
+    totalRevenue: "Gesamtumsatz",
+    totalBookings: "Gesamtbuchungen",
+    fleetStatus: "Flottenstatus",
+    totalCustomers: "Gesamtkunden",
+    vsLastMonth: "vs letzten Monat",
+    available: "Verfügbar",
+    rented: "Vermietet",
+    maintenance: "Wartung",
+    revenueOverview: "Umsatzübersicht",
+    recentBookings: "Aktuelle Buchungen",
+    topVehicles: "Top Fahrzeuge",
+    viewAll: "Alle Anzeigen",
+    
+    // Vehicles
+    allVehicles: "Alle Fahrzeuge",
+    vehiclesInFleet: "Fahrzeuge in Ihrer Flotte",
+    addNewVehicle: "Neues Fahrzeug",
+    allTypes: "Alle Typen",
+    allStatus: "Alle Status",
+    searchVehicles: "Fahrzeuge suchen...",
+    view: "Ansehen",
+    edit: "Bearbeiten",
+    perDay: "/Tag",
+    seats: "Sitze",
+    
+    // Bookings
+    allBookings: "Alle Buchungen",
+    bookingsFound: "Buchungen gefunden",
+    newBooking: "Neue Buchung",
+    searchBookings: "Buchungen suchen...",
+    bookingId: "Buchungs-Nr.",
+    customer: "Kunde",
+    vehicle: "Fahrzeug",
+    dates: "Daten",
+    total: "Gesamt",
+    status: "Status",
+    actions: "Aktionen",
+    active: "Aktiv",
+    pending: "Ausstehend",
+    upcoming: "Bevorstehend",
+    completed: "Abgeschlossen",
+    cancelled: "Storniert",
+    
+    // Customers
+    allCustomers: "Alle Kunden",
+    customersFound: "Kunden gefunden",
+    addCustomer: "Kunde Hinzufügen",
+    searchCustomers: "Kunden suchen...",
+    vipCustomers: "VIP-Kunden",
+    totalSpent: "Gesamtausgaben",
+    memberSince: "Mitglied Seit",
+    viewProfile: "Profil Anzeigen",
+    
+    // Common
+    search: "Suchen",
+    save: "Speichern",
+    cancel: "Abbrechen",
+    delete: "Löschen",
+    close: "Schließen",
+    create: "Erstellen",
+    update: "Aktualisieren",
+    all: "Alle",
+    
+    // Header
+    notifications: "Benachrichtigungen",
+    profile: "Profil",
+    language: "Sprache",
+    
+    // Branding
+    companyName: "Ezhire Cars Dubai",
+    tagline: "Premium Autovermietung",
+  },
+  es: {
+    // Navigation
+    dashboard: "Panel",
+    vehicles: "Vehículos",
+    bookings: "Reservas",
+    customers: "Clientes",
+    revenue: "Ingresos",
+    analytics: "Analíticas",
+    reviews: "Reseñas",
+    settings: "Configuración",
+    help: "Ayuda y Soporte",
+    logout: "Cerrar Sesión",
+    
+    // Dashboard
+    welcomeBack: "Bienvenido de nuevo",
+    totalRevenue: "Ingresos Totales",
+    totalBookings: "Total Reservas",
+    fleetStatus: "Estado de Flota",
+    totalCustomers: "Total Clientes",
+    vsLastMonth: "vs mes anterior",
+    available: "Disponible",
+    rented: "Alquilado",
+    maintenance: "Mantenimiento",
+    revenueOverview: "Resumen de Ingresos",
+    recentBookings: "Reservas Recientes",
+    topVehicles: "Mejores Vehículos",
+    viewAll: "Ver Todo",
+    
+    // Vehicles
+    allVehicles: "Todos los Vehículos",
+    vehiclesInFleet: "vehículos en tu flota",
+    addNewVehicle: "Añadir Vehículo",
+    allTypes: "Todos los Tipos",
+    allStatus: "Todos los Estados",
+    searchVehicles: "Buscar vehículos...",
+    view: "Ver",
+    edit: "Editar",
+    perDay: "/día",
+    seats: "asientos",
+    
+    // Bookings
+    allBookings: "Todas las Reservas",
+    bookingsFound: "reservas encontradas",
+    newBooking: "Nueva Reserva",
+    searchBookings: "Buscar reservas...",
+    bookingId: "ID Reserva",
+    customer: "Cliente",
+    vehicle: "Vehículo",
+    dates: "Fechas",
+    total: "Total",
+    status: "Estado",
+    actions: "Acciones",
+    active: "Activo",
+    pending: "Pendiente",
+    upcoming: "Próximo",
+    completed: "Completado",
+    cancelled: "Cancelado",
+    
+    // Customers
+    allCustomers: "Todos los Clientes",
+    customersFound: "clientes encontrados",
+    addCustomer: "Añadir Cliente",
+    searchCustomers: "Buscar clientes...",
+    vipCustomers: "Clientes VIP",
+    totalSpent: "Total Gastado",
+    memberSince: "Miembro Desde",
+    viewProfile: "Ver Perfil",
+    
+    // Common
+    search: "Buscar",
+    save: "Guardar",
+    cancel: "Cancelar",
+    delete: "Eliminar",
+    close: "Cerrar",
+    create: "Crear",
+    update: "Actualizar",
+    all: "Todo",
+    
+    // Header
+    notifications: "Notificaciones",
+    profile: "Perfil",
+    language: "Idioma",
+    
+    // Branding
+    companyName: "Ezhire Cars Dubái",
+    tagline: "Alquiler de Coches Premium",
+  },
+  pt: {
+    // Navigation
+    dashboard: "Painel",
+    vehicles: "Veículos",
+    bookings: "Reservas",
+    customers: "Clientes",
+    revenue: "Receita",
+    analytics: "Análises",
+    reviews: "Avaliações",
+    settings: "Configurações",
+    help: "Ajuda e Suporte",
+    logout: "Sair",
+    
+    // Dashboard
+    welcomeBack: "Bem-vindo de volta",
+    totalRevenue: "Receita Total",
+    totalBookings: "Total de Reservas",
+    fleetStatus: "Status da Frota",
+    totalCustomers: "Total de Clientes",
+    vsLastMonth: "vs mês passado",
+    available: "Disponível",
+    rented: "Alugado",
+    maintenance: "Manutenção",
+    revenueOverview: "Visão Geral da Receita",
+    recentBookings: "Reservas Recentes",
+    topVehicles: "Melhores Veículos",
+    viewAll: "Ver Tudo",
+    
+    // Vehicles
+    allVehicles: "Todos os Veículos",
+    vehiclesInFleet: "veículos na sua frota",
+    addNewVehicle: "Adicionar Veículo",
+    allTypes: "Todos os Tipos",
+    allStatus: "Todos os Status",
+    searchVehicles: "Buscar veículos...",
+    view: "Ver",
+    edit: "Editar",
+    perDay: "/dia",
+    seats: "lugares",
+    
+    // Bookings
+    allBookings: "Todas as Reservas",
+    bookingsFound: "reservas encontradas",
+    newBooking: "Nova Reserva",
+    searchBookings: "Buscar reservas...",
+    bookingId: "ID da Reserva",
+    customer: "Cliente",
+    vehicle: "Veículo",
+    dates: "Datas",
+    total: "Total",
+    status: "Status",
+    actions: "Ações",
+    active: "Ativo",
+    pending: "Pendente",
+    upcoming: "Próximo",
+    completed: "Concluído",
+    cancelled: "Cancelado",
+    
+    // Customers
+    allCustomers: "Todos os Clientes",
+    customersFound: "clientes encontrados",
+    addCustomer: "Adicionar Cliente",
+    searchCustomers: "Buscar clientes...",
+    vipCustomers: "Clientes VIP",
+    totalSpent: "Total Gasto",
+    memberSince: "Membro Desde",
+    viewProfile: "Ver Perfil",
+    
+    // Common
+    search: "Buscar",
+    save: "Salvar",
+    cancel: "Cancelar",
+    delete: "Excluir",
+    close: "Fechar",
+    create: "Criar",
+    update: "Atualizar",
+    all: "Tudo",
+    
+    // Header
+    notifications: "Notificações",
+    profile: "Perfil",
+    language: "Idioma",
+    
+    // Branding
+    companyName: "Ezhire Cars Dubai",
+    tagline: "Aluguel de Carros Premium",
+  },
+  ru: {
+    // Navigation
+    dashboard: "Панель",
+    vehicles: "Автомобили",
+    bookings: "Бронирования",
+    customers: "Клиенты",
+    revenue: "Доход",
+    analytics: "Аналитика",
+    reviews: "Отзывы",
+    settings: "Настройки",
+    help: "Помощь",
+    logout: "Выйти",
+    
+    // Dashboard
+    welcomeBack: "С возвращением",
+    totalRevenue: "Общий доход",
+    totalBookings: "Всего бронирований",
+    fleetStatus: "Статус автопарка",
+    totalCustomers: "Всего клиентов",
+    vsLastMonth: "к прошлому месяцу",
+    available: "Доступно",
+    rented: "В аренде",
+    maintenance: "На обслуживании",
+    revenueOverview: "Обзор доходов",
+    recentBookings: "Последние бронирования",
+    topVehicles: "Топ автомобили",
+    viewAll: "Смотреть все",
+    
+    // Vehicles
+    allVehicles: "Все автомобили",
+    vehiclesInFleet: "автомобилей в автопарке",
+    addNewVehicle: "Добавить автомобиль",
+    allTypes: "Все типы",
+    allStatus: "Все статусы",
+    searchVehicles: "Поиск автомобилей...",
+    view: "Просмотр",
+    edit: "Изменить",
+    perDay: "/день",
+    seats: "мест",
+    
+    // Bookings
+    allBookings: "Все бронирования",
+    bookingsFound: "бронирований найдено",
+    newBooking: "Новое бронирование",
+    searchBookings: "Поиск бронирований...",
+    bookingId: "№ брони",
+    customer: "Клиент",
+    vehicle: "Автомобиль",
+    dates: "Даты",
+    total: "Итого",
+    status: "Статус",
+    actions: "Действия",
+    active: "Активно",
+    pending: "Ожидает",
+    upcoming: "Предстоит",
+    completed: "Завершено",
+    cancelled: "Отменено",
+    
+    // Customers
+    allCustomers: "Все клиенты",
+    customersFound: "клиентов найдено",
+    addCustomer: "Добавить клиента",
+    searchCustomers: "Поиск клиентов...",
+    vipCustomers: "VIP клиенты",
+    totalSpent: "Всего потрачено",
+    memberSince: "Клиент с",
+    viewProfile: "Профиль",
+    
+    // Common
+    search: "Поиск",
+    save: "Сохранить",
+    cancel: "Отмена",
+    delete: "Удалить",
+    close: "Закрыть",
+    create: "Создать",
+    update: "Обновить",
+    all: "Все",
+    
+    // Header
+    notifications: "Уведомления",
+    profile: "Профиль",
+    language: "Язык",
+    
+    // Branding
+    companyName: "Ezhire Cars Дубай",
+    tagline: "Премиум аренда авто",
+  },
+  tr: {
+    // Navigation
+    dashboard: "Panel",
+    vehicles: "Araçlar",
+    bookings: "Rezervasyonlar",
+    customers: "Müşteriler",
+    revenue: "Gelir",
+    analytics: "Analizler",
+    reviews: "Yorumlar",
+    settings: "Ayarlar",
+    help: "Yardım ve Destek",
+    logout: "Çıkış",
+    
+    // Dashboard
+    welcomeBack: "Tekrar hoş geldiniz",
+    totalRevenue: "Toplam Gelir",
+    totalBookings: "Toplam Rezervasyon",
+    fleetStatus: "Filo Durumu",
+    totalCustomers: "Toplam Müşteri",
+    vsLastMonth: "geçen aya göre",
+    available: "Müsait",
+    rented: "Kiralandı",
+    maintenance: "Bakımda",
+    revenueOverview: "Gelir Özeti",
+    recentBookings: "Son Rezervasyonlar",
+    topVehicles: "En İyi Araçlar",
+    viewAll: "Tümünü Gör",
+    
+    // Vehicles
+    allVehicles: "Tüm Araçlar",
+    vehiclesInFleet: "filonuzdaki araç",
+    addNewVehicle: "Yeni Araç Ekle",
+    allTypes: "Tüm Tipler",
+    allStatus: "Tüm Durumlar",
+    searchVehicles: "Araç ara...",
+    view: "Görüntüle",
+    edit: "Düzenle",
+    perDay: "/gün",
+    seats: "koltuk",
+    
+    // Bookings
+    allBookings: "Tüm Rezervasyonlar",
+    bookingsFound: "rezervasyon bulundu",
+    newBooking: "Yeni Rezervasyon",
+    searchBookings: "Rezervasyon ara...",
+    bookingId: "Rezervasyon No",
+    customer: "Müşteri",
+    vehicle: "Araç",
+    dates: "Tarihler",
+    total: "Toplam",
+    status: "Durum",
+    actions: "İşlemler",
+    active: "Aktif",
+    pending: "Beklemede",
+    upcoming: "Yaklaşan",
+    completed: "Tamamlandı",
+    cancelled: "İptal Edildi",
+    
+    // Customers
+    allCustomers: "Tüm Müşteriler",
+    customersFound: "müşteri bulundu",
+    addCustomer: "Müşteri Ekle",
+    searchCustomers: "Müşteri ara...",
+    vipCustomers: "VIP Müşteriler",
+    totalSpent: "Toplam Harcama",
+    memberSince: "Üyelik Tarihi",
+    viewProfile: "Profili Gör",
+    
+    // Common
+    search: "Ara",
+    save: "Kaydet",
+    cancel: "İptal",
+    delete: "Sil",
+    close: "Kapat",
+    create: "Oluştur",
+    update: "Güncelle",
+    all: "Tümü",
+    
+    // Header
+    notifications: "Bildirimler",
+    profile: "Profil",
+    language: "Dil",
+    
+    // Branding
+    companyName: "Ezhire Cars Dubai",
+    tagline: "Premium Araç Kiralama",
   },
 };
 

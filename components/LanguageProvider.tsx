@@ -3,6 +3,8 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { Language, translations, TranslationKey } from "@/lib/translations";
 
+const validLanguages: Language[] = ["en", "ar", "fr", "de", "es", "pt", "ru", "tr"];
+
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
@@ -24,7 +26,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     setMounted(true);
     const savedLanguage = localStorage.getItem("language") as Language;
-    if (savedLanguage && (savedLanguage === "en" || savedLanguage === "ar")) {
+    if (savedLanguage && validLanguages.includes(savedLanguage)) {
       setLanguage(savedLanguage);
     }
   }, []);
