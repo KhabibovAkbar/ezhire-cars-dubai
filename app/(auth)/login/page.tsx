@@ -15,8 +15,8 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
-    email: "",
-    password: "",
+    email: "admin@ezhirecars.ae",
+    password: "admin123",
   });
 
   const handleSubmit = (e: React.FormEvent) => {

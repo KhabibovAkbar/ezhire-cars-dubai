@@ -15,11 +15,11 @@ export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
+    name: "Ahmed Al Maktoum",
+    email: "ahmed@example.com",
+    phone: "+971 50 123 4567",
+    password: "password123",
+    confirmPassword: "password123",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
