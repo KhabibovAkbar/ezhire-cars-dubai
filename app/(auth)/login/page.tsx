@@ -133,11 +133,6 @@ export default function LoginPage() {
               </Link>
             </div>
 
-            <div className="mt-4 text-center">
-              <Link href="/" className="text-xs text-text-muted hover:text-text-primary">
-                ← Back to home
-              </Link>
-            </div>
           </CardContent>
         </Card>
 

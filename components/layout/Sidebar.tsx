@@ -35,7 +35,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { t, isRTL } = useLanguage();
 
   const handleLogout = () => {
-    router.push("/");
+    router.push("/login");
   };
 
   const mainNavItems = [

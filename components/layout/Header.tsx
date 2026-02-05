@@ -42,7 +42,7 @@ export function Header({ title, subtitle, onMenuClick }: HeaderProps) {
   const isDarkMode = theme === "dark";
 
   const handleLogout = () => {
-    router.push("/");
+    router.push("/login");
   };
 
   const handleProfile = () => {
