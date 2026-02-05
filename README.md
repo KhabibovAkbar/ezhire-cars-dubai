@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DriveHub - Car Rental Admin Dashboard
+
+A modern, production-ready admin dashboard for a car rental business. This is a **frontend-only** demo showcasing beautiful UI/UX design.
+
+![Dashboard Preview](https://via.placeholder.com/1200x600?text=DriveHub+Dashboard)
+
+## Features
+
+- **8 Complete Pages**: Dashboard, Vehicles, Bookings, Customers, Revenue, Analytics, Reviews, Settings
+- **Modern Design**: Dark theme with glassmorphism effects and smooth animations
+- **Fully Responsive**: Works seamlessly on desktop, tablet, and mobile
+- **Interactive Charts**: Beautiful visualizations using Recharts
+- **Mock Data**: All data is hardcoded for easy demo purposes
+
+## Tech Stack
+
+- **Next.js 14+** - React framework with App Router
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first styling
+- **Framer Motion** - Smooth animations
+- **Recharts** - Data visualization
+- **Lucide React** - Beautiful icons
+- **Radix UI** - Accessible components
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Pages Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Dashboard
+Main overview with key metrics, revenue chart, recent bookings, fleet status, and top vehicles.
 
-## Learn More
+### 2. Vehicles
+Grid view of all vehicles with filtering by category, status, and search. Includes vehicle cards with images, specs, and ratings.
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Bookings
+Table view of all reservations with status tabs (Active, Pending, Upcoming, Completed) and quick actions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Customers
+Customer cards showing profile info, booking history, total spent, and VIP status.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 5. Revenue
+Financial overview with revenue charts, category breakdown, and recent transactions.
 
-## Deploy on Vercel
+### 6. Analytics
+Business insights including booking trends, pickup times, vehicle utilization, and customer demographics.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 7. Reviews
+Customer feedback with star ratings, comments, and response options.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 8. Settings
+Profile, company info, notification preferences, and appearance settings.
+
+## Project Structure
+
+```
+├── app/
+│   ├── (dashboard)/
+│   │   ├── analytics/
+│   │   ├── bookings/
+│   │   ├── customers/
+│   │   ├── dashboard/
+│   │   ├── revenue/
+│   │   ├── reviews/
+│   │   ├── settings/
+│   │   └── vehicles/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── charts/
+│   ├── dashboard/
+│   ├── layout/
+│   ├── ui/
+│   └── vehicles/
+├── lib/
+│   ├── data.ts      # Mock data
+│   └── utils.ts     # Utility functions
+└── types/
+    └── index.ts     # TypeScript types
+```
+
+## Customization
+
+### Colors
+Edit the color palette in `app/globals.css`:
+
+```css
+--color-accent: #8B5CF6;      /* Primary accent */
+--color-success: #22C55E;     /* Success states */
+--color-warning: #F59E0B;     /* Warning states */
+--color-danger: #EF4444;      /* Error states */
+```
+
+### Mock Data
+All mock data is located in `lib/data.ts`. Modify vehicles, bookings, customers, and other data as needed.
+
+## License
+
+This project is for demonstration purposes. Feel free to use it as a starting point for your own projects.
+
+---
+
+Built with ❤️ by DriveHub Team
