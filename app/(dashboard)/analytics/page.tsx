@@ -21,10 +21,10 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { bookingTrends, pickupTimes, vehicleUtilization } from "@/lib/data";
 
-const COLORS = ["#8B5CF6", "#3B82F6", "#22C55E", "#F59E0B"];
+const COLORS = ["#613C98", "#3B82F6", "#22C55E", "#F59E0B"];
 
 const customerData = [
-  { name: "New", value: 65, color: "#8B5CF6" },
+  { name: "New", value: 65, color: "#613C98" },
   { name: "Returning", value: 35, color: "#22C55E" },
 ];
 
@@ -107,10 +107,10 @@ export default function AnalyticsPage() {
                           <Line
                             type="monotone"
                             dataKey="bookings"
-                            stroke="#8B5CF6"
+                            stroke="#613C98"
                             strokeWidth={3}
-                            dot={{ fill: "#8B5CF6", strokeWidth: 0, r: 4 }}
-                            activeDot={{ r: 6, fill: "#8B5CF6" }}
+                            dot={{ fill: "#613C98", strokeWidth: 0, r: 4 }}
+                            activeDot={{ r: 6, fill: "#613C98" }}
                           />
                         </LineChart>
                       </ResponsiveContainer>
@@ -155,7 +155,7 @@ export default function AnalyticsPage() {
                           <Tooltip content={<CustomTooltip />} />
                           <Bar
                             dataKey="count"
-                            fill="#8B5CF6"
+                            fill="#613C98"
                             radius={[0, 4, 4, 0]}
                           />
                         </BarChart>

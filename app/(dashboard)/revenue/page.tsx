@@ -26,7 +26,7 @@ import { revenueData, revenueByCategory, bookings } from "@/lib/data";
 import { formatCurrency } from "@/lib/utils";
 import { StatusBadge } from "@/components/StatusBadge";
 
-const COLORS = ["#8B5CF6", "#3B82F6", "#22C55E", "#F59E0B", "#EF4444"];
+const COLORS = ["#613C98", "#3B82F6", "#22C55E", "#F59E0B", "#EF4444"];
 
 const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: { value: number }[]; label?: string }) => {
   if (active && payload && payload.length) {
@@ -181,12 +181,12 @@ export default function RevenuePage() {
                             >
                               <stop
                                 offset="5%"
-                                stopColor="#8B5CF6"
+                                stopColor="#613C98"
                                 stopOpacity={0.3}
                               />
                               <stop
                                 offset="95%"
-                                stopColor="#8B5CF6"
+                                stopColor="#613C98"
                                 stopOpacity={0}
                               />
                             </linearGradient>
@@ -212,7 +212,7 @@ export default function RevenuePage() {
                           <Area
                             type="monotone"
                             dataKey="revenue"
-                            stroke="#8B5CF6"
+                            stroke="#613C98"
                             strokeWidth={2}
                             fillOpacity={1}
                             fill="url(#colorRevenueGrad)"

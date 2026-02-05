@@ -373,7 +373,7 @@ export default function SettingsPage() {
                         </p>
                         <div className="flex gap-3">
                           {[
-                            "#8B5CF6",
+                            "#613C98",
                             "#3B82F6",
                             "#22C55E",
                             "#F59E0B",
