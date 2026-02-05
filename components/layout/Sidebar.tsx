@@ -78,14 +78,14 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const SidebarContent = () => (
     <>
       {/* Logo */}
-      <div className="flex items-center justify-between h-16 px-6 border-b border-border shrink-0">
+      <div className="flex items-center justify-between h-14 px-4 border-b border-border shrink-0">
         <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent">
-            <Car className="w-5 h-5 text-white" />
+          <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-accent">
+            <Car className="w-4 h-4 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-bold text-text-primary leading-tight">Ezhire Cars</span>
-            <span className="text-[10px] text-accent font-medium -mt-0.5">DUBAI</span>
+            <span className="text-base font-bold text-text-primary leading-tight">Ezhire Cars</span>
+            <span className="text-[9px] text-accent font-medium -mt-0.5">DUBAI</span>
           </div>
         </Link>
         <Button
