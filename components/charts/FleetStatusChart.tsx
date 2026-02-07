@@ -33,10 +33,10 @@ export function FleetStatusChart() {
         <CardHeader className="pb-2">
           <CardTitle className="text-lg">Fleet Status</CardTitle>
         </CardHeader>
-        <CardContent className="flex-1 flex items-center overflow-hidden">
+        <CardContent className="flex-1 flex items-center overflow-hidden pb-4">
           <div className="flex items-center w-full gap-4">
             {/* Chart */}
-            <div className="h-[180px] w-[180px] flex-shrink-0">
+            <div className="h-[200px] w-[200px] flex-shrink-0">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie

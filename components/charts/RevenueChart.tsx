@@ -39,8 +39,8 @@ export function RevenueChart() {
         <CardHeader className="pb-2">
           <CardTitle className="text-lg">Revenue Overview</CardTitle>
         </CardHeader>
-        <CardContent className="flex-1">
-          <div className="h-full w-full">
+        <CardContent className="flex-1 pb-2">
+          <div className="h-[240px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart
                 data={revenueData}
