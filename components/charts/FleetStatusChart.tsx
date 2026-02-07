@@ -23,20 +23,19 @@ export function FleetStatusChart() {
   const total = fleetStatus.reduce((sum, item) => sum + item.value, 0);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.3 }}
-      className="h-full"
-    >
-      <Card className="h-full flex flex-col">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-lg">Fleet Status</CardTitle>
-        </CardHeader>
-        <CardContent className="flex-1 flex items-center overflow-hidden pb-4">
-          <div className="flex items-center w-full gap-4">
-            {/* Chart */}
-            <div className="h-[200px] w-[200px] flex-shrink-0">
+    <Card className="h-full flex flex-col">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg">Fleet Status</CardTitle>
+      </CardHeader>
+      <CardContent className="flex-1 min-h-0 flex items-center overflow-hidden pb-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="flex items-center w-full gap-4"
+        >
+          {/* Chart */}
+          <div className="h-[180px] w-[180px] flex-shrink-0">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -77,9 +76,8 @@ export function FleetStatusChart() {
                 </div>
               ))}
             </div>
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
+        </motion.div>
+      </CardContent>
+    </Card>
   );
 }

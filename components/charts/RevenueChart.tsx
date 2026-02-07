@@ -29,18 +29,17 @@ const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?:
 
 export function RevenueChart() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.2 }}
-      className="h-full"
-    >
-      <Card className="h-full flex flex-col">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-lg">Revenue Overview</CardTitle>
-        </CardHeader>
-        <CardContent className="flex-1 pb-2">
-          <div className="h-[240px] w-full">
+    <Card className="h-full flex flex-col">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg">Revenue Overview</CardTitle>
+      </CardHeader>
+      <CardContent className="flex-1 min-h-0 pb-2">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          className="h-full w-full"
+        >
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart
                 data={revenueData}
@@ -80,9 +79,8 @@ export function RevenueChart() {
                 />
               </AreaChart>
             </ResponsiveContainer>
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
+        </motion.div>
+      </CardContent>
+    </Card>
   );
 }
